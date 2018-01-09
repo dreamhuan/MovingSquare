@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{item.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="image">
+    <img [src]="item.url"/>
+    <div class="name">{{item.name}}</div>
+  </div>
+
+  <div class="level">
+    难度：
+    <input id="3" type="radio" name="level" value="3" (change)="onSelectionChange(3)" checked/>
+    <label for="3">3x3</label>
+    <input id="4" type="radio" name="level" value="4" (change)="onSelectionChange(4)"/>
+    <label for="4">4x4</label>
+    <input id="5" type="radio" name="level" value="5" (change)="onSelectionChange(5)"/>
+    <label for="5">5x5</label>
+  </div>
+
+  <div class="introduce" [innerHtml]="item.introduce"></div>
+
+  <div class="game" (click)="game()">
+    <img src="assets/imgs/ic_game.png">
+  </div>
+
+</ion-content>

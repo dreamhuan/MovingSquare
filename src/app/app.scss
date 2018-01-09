@@ -1,0 +1,51 @@
+// http://ionicframework.com/docs/theming/
+
+// App Global Sass
+button {
+  /* 取消默认的按钮文字大写 */
+  text-transform: none !important;
+}
+
+/* 取消内容滚动条 */
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+.side-header {
+  height: 150px;
+  background-color: #4b47ff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .head-img {
+    height: 100px;
+
+    img {
+      margin-top: 50px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+  .name,
+  .email{
+    width: 100%;
+    color: white;
+    padding-left: 10px;
+  }
+}
+
+.side-item{
+  font-weight: bold;
+
+  .menu-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+  }
+
+  .menu-text{
+    padding-bottom: 30px;
+  }
+}

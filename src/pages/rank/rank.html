@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Rank</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <h1>{{title}}</h1>
+  <div class="select-level">
+    <div class="rank-name" (click)="showTop(3)">3x3</div>
+    <div class="rank-name" (click)="showTop(4)">4x4</div>
+    <div class="rank-name" (click)="showTop(5)">5x5</div>
+  </div>
+  <div class="rank">
+    <div class="title">
+      <div>top</div>
+      <div>date</div>
+      <div>time</div>
+    </div>
+    <div class="content">
+      <ion-list>
+        <ion-item *ngFor="let item of items;let i = index">
+          <div class="time">
+            <div>{{i+1}}</div>
+            <div>{{item.date}}</div>
+            <div>{{item.time}}</div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

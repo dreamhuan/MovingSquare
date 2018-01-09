@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>MovingSquare</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="contents">
+    <ion-card *ngFor="let i of items" (click)="info(i)">
+      <img [src]="i.url"/>
+      <ion-card-content>
+        {{i.name}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

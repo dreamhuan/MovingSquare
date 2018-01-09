@@ -1,0 +1,25 @@
+page-home {
+
+  .contents {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    ion-card {
+      margin: 2%;
+      width: 45%;
+      height: 150px;
+      box-shadow: #8c8c8c 3px 3px 15px;
+      border-radius: 5px;
+
+      img {
+        width: 100%;
+        height: 70%;
+      }
+
+      ion-card-content {
+        text-align: center;
+      }
+    }
+  }
+}

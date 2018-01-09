@@ -1,0 +1,36 @@
+page-rank {
+
+  h1 {
+    text-align: center;
+  }
+  .select-level {
+
+    display: flex;
+
+    .rank-name {
+      width: 33%;
+      font-size: 20px;
+      margin-left: 20px;
+    }
+  }
+
+  .rank {
+
+    .title {
+      display: flex;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: 300;
+      justify-content: space-around;
+      border-bottom: 1px solid black;
+    }
+
+    .content {
+      .time {
+        display: flex;
+        font-size: 20px;
+        justify-content: space-around;
+      }
+    }
+  }
+}
