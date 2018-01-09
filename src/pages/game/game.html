@@ -1,14 +1,22 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Game</ion-title>
-  </ion-navbar>
-</ion-header>
+<!--<ion-header>-->
+  <!--<ion-navbar color="primary">-->
+    <!--<button ion-button menuToggle>-->
+      <!--<ion-icon name="menu"></ion-icon>-->
+    <!--</button>-->
+    <!--<ion-title>Game</ion-title>-->
+  <!--</ion-navbar>-->
+<!--</ion-header>-->
 
 <ion-content>
 
-<canvas id="canvas" class="game"></canvas>
+  <div class="time">time: {{time}}</div>
+  <canvas id="canvas" class="game" (click)="click($event)"></canvas>
+  <canvas id="imgCanvas" class="img-canvas" [class.hide]="!isShowImg"></canvas>
+
+  <div class="game-control">
+    <button ion-button color="light" (click)="pic()">原图</button>
+    <button ion-button color="light" (click)="reset()">重置</button>
+    <button ion-button color="light" (click)="back()">返回</button>
+  </div>
 
 </ion-content>
