@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-game',
@@ -37,7 +37,7 @@ export class GamePage {
   isFinished: boolean = false;
   isShowImg: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.imgUrl = navParams.get('url');
     this.level = navParams.get('level');
     console.log(this.imgUrl);
@@ -47,7 +47,9 @@ export class GamePage {
     this.image.src = this.imgUrl;
   }
 
-  //生命周期函数
+  /**
+   *  生命周期函数
+   */
   ionViewWillEnter() {
     this.canvas = document.querySelector('#canvas') as HTMLCanvasElement;
     this.context = this.canvas.getContext('2d');
@@ -76,14 +78,20 @@ export class GamePage {
     this.initGame();
   }
 
+  /**
+   * 初始化游戏
+   */
   initGame() {
-
     this.context.drawImage(this.image,
       0, 0, this.image.width, this.image.height,
       0, 0, this.canvas.width, this.canvas.height);
 
     this.offContext.drawImage(this.canvas, 0, 0);
-    this.imgContext.drawImage(this.canvas, 0, 0);
+
+    this.imgContext.drawImage(this.canvas,
+      0, 0, this.canvas.width, this.canvas.height,
+      0, 0, this.imgCanvas.width, this.imgCanvas.height);
+
 
     this.time = 0;
     this.isFinished = false;
@@ -95,6 +103,9 @@ export class GamePage {
     this.draw();
   }
 
+  /**
+   * 生成乱序数组
+   */
   generate() {
     //初始化
     this.datas = [];
@@ -117,9 +128,7 @@ export class GamePage {
   }
 
   /**
-   * 该数据是否有解
-   * @param data int数组
-   * @return 该数据是否有解
+   * 判断该数据是否有解
    *
    * 可行性原则：（随机打乱序列将会有一半的概率无解）
    * 拼图宽度为奇数时，序列逆序对数量为偶数有解
@@ -144,9 +153,6 @@ export class GamePage {
 
   /**
    * 计算序列的逆序对数量
-   *
-   * @param data int数组
-   * @return 逆序对数量
    */
   getInversions(): number {
     let inversions = 0;
@@ -163,7 +169,9 @@ export class GamePage {
     return inversions;
   }
 
-
+  /**
+   * 根据数组画图
+   */
   draw() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this.isFinished) {
@@ -238,12 +246,25 @@ export class GamePage {
   }
 
   judge() {
-    let str = this.datas.join('');
-    if (str === '123456780') {
-      console.log('finish');
-      this.isFinished = true;
-      clearInterval(this.interval);
+    // 如果完成 则datas数组应该是1, 2, 3, 4, 5...level * level - 1, 0
+    for (let i = 0; i < this.datas.length - 1; i++) {
+      if (this.datas[ i ] !== i + 1) { //除了最后一个数以外前面的数有一个不对就return
+        return;
+      }
     }
+    console.log('finish');
+    this.isFinished = true;
+    clearInterval(this.interval);
+    this.showAlert();
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: '恭喜!',
+      subTitle: `完成拼图，耗时：${this.time}秒`,
+      buttons: [ 'OK' ]
+    });
+    alert.present();
   }
 
   pic() {
